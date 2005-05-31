@@ -1,0 +1,6 @@
+Revision history for Perl extension Device::LabJack.
+
+0.01  Thu Apr  3 00:15:19 2003
+	- first version (originally named "LJperl"); created by h2xs 1.23 with options
+		-A -b 5.6.0 -n Device::LabJack
+

@@ -1,0 +1,17 @@
+Changes
+LabJack.xs
+Makefile.PL
+MANIFEST
+ppport.h
+README
+ljackuw.h
+ljackuw_1.074.lib
+test.pl
+hello.pl
+ljackuw.lib
+ljackuw.dll
+ljackuwx.ocx
+ljackuw_1.074.h
+t/Device-LabJack.t
+lib/Device/LabJack.pm
+META.yml                                 Module meta-data (added by MakeMaker)
