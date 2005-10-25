@@ -1,7 +1,7 @@
-LJperl version 0.01
+Device::LabJack version 0.02
 ===================
 
-This module provides native perl access to the LabJack U12
+This module provides native perl access to the LabJack U12, under Windows or Linux (and soon: Mac)
 
 It can read and write digital and analog data to and from the device.
 
@@ -29,7 +29,7 @@ This is free.  If you improve or add to this module, please email me the
 new version. Find my current email address from the "contacts" page of 
 my web site, at http://www.ReadNotify.com 
 
-Written by Chris Drake, Feb 1, 2003.
+First Written by Chris Drake, Feb 1, 2003.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

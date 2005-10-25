@@ -24,9 +24,18 @@ $ledOn=1;
 @gains=(0,0,0,0);
 $disableCal=0;
 
-print "If you can see 4 status values followed by your current 8 AI voltages below, then this test has passed:-\n";
+print "Warning: we're about to read and write stuff to your LabJack,
+so remove your hamster from your guilotine (or unplug your LabJack
+from your guilotine solenoid and whatever else it drives), then hit
+enter to continue...\n";
 
-print "\nAISample(channels 0,1,2,3):-\n";
+print "If you can see your firmware, then 4 status values followed by your current 8 AI voltages below, then this test has passed:-\n";
+
+print "\nYour firmware version is: ";
+print Device::LabJack::GetFirmwareVersion($idnum);
+# print " on labjack ID# $idnum";
+
+print "\n\nAISample(channels 0,1,2,3):-\n";
 
 my(@results)=Device::LabJack::AISample($idnum,$demo,$stateIO,$updateIO,$ledOn,\@channels,\@gains,$disableCal);
 print join("\n",@results);
@@ -86,6 +95,57 @@ my(@results)=Device::LabJack::AIBurst($idnum,$demo,$stateIO,$updateIO,$ledOn,\@c
 
 
 print join(", ",@results);
+
+
+
+
+
+
+
+
+my $errcode = 0;
+my $id      = 0;
+
+my $ch   = 0;
+my $gain = 0;
+my ($oV,$V);
+
+($errcode, $id, $oV, $V) = Device::LabJack::EAnalogIn($idnum, $demo, $ch, $gain);
+
+print "\n\nEAnalogIn\nResult: err=$errcode, id=$id, oV=$oV, V=$V\n";
+
+
+
+
+
+
+my($analogOut0, $analogOut1)=(2.2,3.3);
+
+($errcode,$id) = Device::LabJack::EAnalogOut($idnum, $demo, $analogOut0, $analogOut1);
+
+print "\n\nEAnalogOut($idnum, $demo, $analogOut0, $analogOut1)=($errcode,$id)\n";
+
+
+
+@results = Device::LabJack::ECount($idnum, $demo, 0);
+
+print "\n\nECount($idnum, $demo, 0)=(". join(',',@results) . ")\n";
+
+
+$channel=1;
+$writeD=1;
+$state=1;
+
+@results = Device::LabJack::EDigitalOut($idnum, $demo, $channel, $writeD, $state);
+print "\n\nEDigitalOut($idnum, $demo, $channel, $writeD, $state)=(". join(',',@results) . ")\n";
+
+
+
+
+@results = Device::LabJack::EDigitalIn($idnum, 0, 0);print "\n\nEDigitalIn($idnum, 0, 0)=(". join(',',@results) . ")\n";
+@results = Device::LabJack::EDigitalIn($idnum, 1, 0);print "EDigitalIn($idnum, 1, 0)=(". join(',',@results) . ")\n";
+@results = Device::LabJack::EDigitalIn($idnum, 2, 0);print "EDigitalIn($idnum, 2, 0)=(". join(',',@results) . ")\n";
+@results = Device::LabJack::EDigitalIn($idnum, 3, 0);print "EDigitalIn($idnum, 3, 0)=(". join(',',@results) . ")\n";
 
 
 
